@@ -1,2 +1,2 @@
-# zio_real_estate_crawler
-ZIO Real Estate Crawler for monitoring changes at real estate webpages in Cracow, Poland.
+# ZIO Real Estate Crawler
+monitoring changes at some real estate webpages in Cracow, Poland.
