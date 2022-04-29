@@ -15,3 +15,4 @@ libraryDependencies ++= {
     "io.d11" %% "zhttp-test" % zhttpVersion % Test
   )
 }
+enablePlugins(JavaAppPackaging)
