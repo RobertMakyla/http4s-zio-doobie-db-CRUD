@@ -4,7 +4,10 @@
 .bsp/*
 .idea
 .idea/*
-project
-project/*
+project/boot
+project/project
+project/project/*
+project/target
+project/target/*
 target
 target/*
