@@ -1,4 +1,4 @@
-name := "zio_real_estate_crawler"
+name := "zio-real-estate-crawler"
 
 version := "1.0"
 
