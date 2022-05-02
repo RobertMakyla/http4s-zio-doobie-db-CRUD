@@ -12,7 +12,7 @@ import scala.util.Try
 
 object MainApp extends App {
 
-  private val PORT = Try(System.getProperty("http.port").toInt).getOrElse(8080)
+  private val PORT = Try(System.getProperty("http.port").toInt).getOrElse(6666)
 
   private val simpleRoutes: HttpApp[Any, Nothing] = Http.collect[Request] {
     case Method.GET -> !! / "foo" => Response.text("bar")
