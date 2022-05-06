@@ -1,4 +1,5 @@
-package zio_real_estate_crawler.port
+package zio_real_estate_crawler.http
+
 import zio.{Has, ZIO, ZLayer}
 
 import scala.util.Try
@@ -11,7 +12,7 @@ object Port {
     ZIO.effect(
       Port(
         Try(System.getProperty("http.port").toInt).getOrElse(8080)
-    )
-  ).toLayer
+      )
+    ).toLayer
 
 }
