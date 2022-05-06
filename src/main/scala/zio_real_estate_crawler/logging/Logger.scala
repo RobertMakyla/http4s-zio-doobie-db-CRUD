@@ -4,6 +4,8 @@ import org.slf4j.LoggerFactory
 import zio.clock.Clock
 import zio.{Has, UIO, ULayer, URIO, ZIO}
 
+import java.time.LocalDateTime
+
 /**
  * service definition
  */
@@ -15,7 +17,7 @@ trait Logger {
   def warn(msg: => String): UIO[Unit]
   def error(msg: => String): UIO[Unit]
 
-  def infoWithTimestamp(msg: => String): URIO[Has[Clock], Unit]
+  def infoWithTimestamp(msg: => String): URIO[Has[Clock.Service], Unit]
 }
 
 object Logger {
@@ -40,9 +42,13 @@ object Logger {
     override def warn(msg: => String): UIO[Unit] = ZIO.effectTotal(logger.warn(msg))
     override def error(msg: => String): UIO[Unit] = ZIO.effectTotal(logger.error(msg))
 
-    override def infoWithTimestamp(msg: => String): URIO[Has[Clock], Unit] = ZIO.access[Has[Clock]]( // accessing environment
-      clock =>
-        logger.info(clock.get.get.currentDateTime.toString + " - " + msg)
-    )
+    override def infoWithTimestamp(msg: => String): URIO[Has[Clock.Service], Unit] = { // accessing environment
+      ZIO.accessM[Has[Clock.Service]](
+        _.get.localDateTime.flatMap(time =>
+          ZIO.effectTotal(logger.info(time.toString + " - " + msg))
+        )
+      )
+    }.orElse(ZIO.unit)
+
   }
 }
