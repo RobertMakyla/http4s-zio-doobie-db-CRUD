@@ -43,12 +43,15 @@ object Logger {
     override def error(msg: => String): UIO[Unit] = ZIO.effectTotal(logger.error(msg))
 
     override def infoWithTimestamp(msg: => String): URIO[Has[Clock.Service], Unit] = { // accessing environment
-      ZIO.accessM[Has[Clock.Service]](
-        _.get.localDateTime.flatMap(time =>
-          ZIO.effectTotal(logger.info(time.toString + " - " + msg))
-        )
-      )
-    }.orElse(ZIO.unit)
+//      ZIO.serviceWith[Clock.Service](_.localDateTime.flatMap(time =>
+//        ZIO.effectTotal(logger.info(time.toString + " - " + msg))
+//      ))}
+            ZIO.accessM[Has[Clock.Service]](
+              _.get.localDateTime.flatMap(time =>
+                ZIO.effectTotal(logger.info(time.toString + " - " + msg))
+              )
+            )
+          }.orElse(ZIO.unit)
 
   }
 }

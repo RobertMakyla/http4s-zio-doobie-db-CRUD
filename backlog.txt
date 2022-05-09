@@ -1,7 +1,7 @@
-read and apply WIRING (layers services)
+add welcome msg
+testing port (from system, from config)
 testing config
+testing loggers
 testing server responses
-loggers
-testing loggers ?
 
 add http crawler layer/service
