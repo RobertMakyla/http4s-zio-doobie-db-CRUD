@@ -8,7 +8,7 @@ case class Port(value: Int)
 
 object Port {
 
-  val fromSystemPropertyOr8080: ZLayer[Any, Throwable, Has[Port]] =
+  val fromSystemPropertyOrElse8080: ZLayer[Any, Throwable, Has[Port]] =
     ZIO.effect(
       Port(
         Try(System.getProperty("http.port").toInt).getOrElse(8080)
