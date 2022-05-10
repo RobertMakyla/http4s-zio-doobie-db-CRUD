@@ -12,10 +12,15 @@ object Layers {
     with Has[HttpServer]
     with Has[AppConfig]
 
-  private val appConfigLayer: ZLayer[Any, Throwable, Has[AppConfig]] = RawConfig.rawConfig >>> AppConfig.fromRawConfig
+  private val appConfigLayer = RawConfig.rawConfig >>> AppConfig.fromRawConfig
 
   def appLayer: ZLayer[Any, Throwable, AppEnv] = {
     Logger.slf4j ++
-      (appConfigLayer >+> zio.ZEnv.live >+> Port.fromSystemPropOrConfig >+> Endpoints.live >+> HttpServer.live)
+      (zio.ZEnv.live >+>
+        appConfigLayer >+>
+        Port.fromSystemPropOrConfig >+>
+        Endpoints.live >+>
+        HttpServer.live
+        )
   }
 }
