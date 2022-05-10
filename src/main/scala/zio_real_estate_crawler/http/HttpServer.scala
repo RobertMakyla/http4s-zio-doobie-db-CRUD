@@ -16,22 +16,12 @@ trait HttpServer {
 
 object HttpServer {
 
-  private case class Live(port: Int) extends HttpServer {
-
-    private val simpleRoutes: HttpApp[Any, Nothing] = Http.collect[Request] {
-      case Method.GET -> !! / "foo" => Response.text("bar")
-      case Method.GET -> !! / "bar" => Response.text("foo")
-    }
-
-    private val effectualRoutes: HttpApp[Random with Clock, DateTimeException] = Http.collectZIO[Request] {
-      case Method.GET -> !! / "random" => random.nextString(10).map(s => Response.text(s))
-      case Method.GET -> !! / "utc" => clock.currentDateTime.map(s => Response.text(s.toString))
-    }
+  private case class Live(port: Int, endpoints: Endpoints) extends HttpServer {
 
     private val server =
       Server.port(port) ++ // Setup port
         Server.paranoidLeakDetection ++ // Paranoid leak detection (affects performance)
-        Server.app(simpleRoutes ++ effectualRoutes) // Setup the Http app
+        Server.app(endpoints.all) // Setup the Http app
 
     override def runForever: ZIO[zio.ZEnv, Throwable, Unit] =
       server.make
@@ -45,10 +35,11 @@ object HttpServer {
 
   }
 
-  val live: ZLayer[Has[Port], Throwable, Has[HttpServer]] = {
+  val live: ZLayer[Has[Port] with Has[Endpoints], Throwable, Has[HttpServer]] = {
     for {
       port <- ZIO.service[Port]
-    } yield Live(port.value)
+      endpoints <- ZIO.service[Endpoints]
+    } yield Live(port.value, endpoints)
   }.toLayer
 
 }
