@@ -1,7 +1,7 @@
 package zio_real_estate_crawler.http
 
 import zhttp.http._
-import zio.{Has, ULayer, ZIO, ZLayer}
+import zio.{ ULayer, ZIO, ZLayer}
 import zio_real_estate_crawler.config.AppConfig
 
 trait Endpoints {
@@ -26,10 +26,10 @@ object Endpoints {
     val all = simpleRoutes // ++ effectualRoutes
   }
 
-  val live: ZLayer[Has[AppConfig], Nothing, Has[Endpoints]] = {
+  val live: ZLayer[AppConfig, Nothing, Endpoints] = ZLayer {
     for{
       config <- ZIO.service[AppConfig]
     } yield Live(config)
-  }.toLayer
+  }
 
 }

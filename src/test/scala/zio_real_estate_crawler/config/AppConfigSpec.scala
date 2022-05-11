@@ -2,7 +2,6 @@ package zio_real_estate_crawler.config
 
 import zio.ZIO
 import zio.test.Assertion.equalTo
-import zio.test.{DefaultRunnableSpec, assertM}
 
 //object AppConfigSpec extends DefaultRunnableSpec {
 //

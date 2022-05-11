@@ -1,9 +1,9 @@
 package zio_real_estate_crawler.config
 
-import zio.{Has, ZIO, ZLayer}
+import zio.{IO, ZIO, ZLayer}
 import zio.config._
 import ConfigDescriptor._
-import zio.config.typesafe.TypesafeConfig
+import zio.config.typesafe.{TypesafeConfig, TypesafeConfigSource}
 
 case class AppConfig(welcomeMessage: WelcomeMessage, http: HttpConfig)
 
@@ -17,14 +17,17 @@ object AppConfig {
     string("welcome")(WelcomeMessage.apply, WelcomeMessage.unapply)
 
   val http: ConfigDescriptor[HttpConfig] =
-    (string("host") |@| int("port")) (HttpConfig.apply, HttpConfig.unapply)
+    string("host").zip(int("port")).to[HttpConfig]
 
   val appConfig: ConfigDescriptor[AppConfig] =
-    (welcome |@| nested("http")(http)) (AppConfig.apply, AppConfig.unapply)
+    welcome.zip(nested("http")(http)).to[AppConfig]
 
-  val fromRawConfig: ZLayer[Has[RawConfig], ReadError[String], Has[AppConfig]] =
-    TypesafeConfig.fromTypesafeConfigM(
-      ZIO.service[RawConfig].map(_.config), appConfig
-    )
+  val fromRawConfig: ZLayer[RawConfig, ReadError[String], AppConfig] = ZLayer {
+    for {
+      rawConfig <- ZIO.service[RawConfig]
+      appConfig <- read(appConfig.from(TypesafeConfigSource.fromTypesafeConfig(ZIO.succeed(rawConfig.config))))
+    } yield appConfig
+  }
+
 }
 

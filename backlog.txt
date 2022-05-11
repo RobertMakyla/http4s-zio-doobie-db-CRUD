@@ -1,8 +1,11 @@
+
+read about test Aspects
 testing port (from system, from config)
 testing config
 testing loggers
 testing endpoints
 testing server responses
 testing loggers ?
+
 
 add http crawler layer/service
