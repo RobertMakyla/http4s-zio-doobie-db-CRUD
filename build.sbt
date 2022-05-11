@@ -12,8 +12,9 @@ libraryDependencies ++= {
   Seq(
     "dev.zio" %% "zio" % zioVersion,
 //    "dev.zio" %% "zio-test" % zioVersion,
-    "dev.zio" %% "zio-config" % zioConfigVersion,
-    "dev.zio" %% "zio-config-typesafe" % zioConfigVersion,
+    "dev.zio" %% "zio-config" % zioConfigVersion excludeAll(ExclusionRule(organization = "dev.zio", name = "zio")),
+    "dev.zio" %% "zio-config-typesafe" % zioConfigVersion excludeAll(ExclusionRule(organization = "com.typesafe", name = "config"),
+                                                                     ExclusionRule(organization = "dev.zio", name = "zio")),
     "io.d11" %% "zhttp" % zhttpVersion,
  //   "io.d11" %% "zhttp-test" % zhttpVersion % Test,
     "com.typesafe" % "config" % "1.4.2",
