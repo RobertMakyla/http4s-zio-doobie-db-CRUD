@@ -25,6 +25,16 @@ object Boot extends ZIOAppDefault {
 
   private def runApp: ZIO[AppEnv, Throwable, Unit] = runInit *> runServer
 
+  /*
+     The 'provide()' builds dependency graph automatically . No need to use >>> and >+>  :
+
+      (RawConfig.rawConfig >>> AppConfig.fromRawConfig ) >+>  // config
+      Logger.slf4j >+> // config & Logger
+      ZEnv.live >+>    // config & Logger & ZEnv.live
+      port  >+>        // config & Logger & ZEnv.live & port
+      endpoints >+>    // config & Logger & ZEnv.live & port & endpoints
+      server           // config & Logger & ZEnv.live & port & endpoints & server
+   */
   override def run: ZIO[Any, Throwable, Unit] = runApp.provide(
     RawConfig.rawConfig,
     AppConfig.fromRawConfig,
