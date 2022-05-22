@@ -11,12 +11,12 @@ libraryDependencies ++= {
 
   Seq(
     "dev.zio" %% "zio"                 % zioVersion,
-    "dev.zio" %% "zio-test"            % zioVersion % "test",
-    "dev.zio" %% "zio-test-sbt"        % zioVersion % "test",
+    "dev.zio" %% "zio-test"            % zioVersion % Test,
+    "dev.zio" %% "zio-test-sbt"        % zioVersion % Test,
     "dev.zio" %% "zio-config"          % zioConfigVersion,
     "dev.zio" %% "zio-config-typesafe" % zioConfigVersion,
     "io.d11"  %% "zhttp"               % zhttpVersion,
-    // "io.d11" %% "zhttp-test"        % zhttpVersion % Test,
+    "io.d11"  %% "zhttp-test"          % zhttpVersion % Test,
     "org.slf4j" % "slf4j-api"          % "1.7.36"
   )
 }
