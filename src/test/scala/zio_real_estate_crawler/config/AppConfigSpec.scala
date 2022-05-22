@@ -9,9 +9,6 @@ import zio.test.{ZIOSpecDefault, _}
 
 object AppConfigSpec extends ZIOSpecDefault {
 
-  val expected: ConversionError[String] =
-    ConversionError(List(Step.Key("changeme")), "Predicate isEmpty() did not fail.", Set.empty)
-
   def spec = {
     suite("AppConfigSpec")(
       test("is loading correct config") {
@@ -20,11 +17,11 @@ object AppConfigSpec extends ZIOSpecDefault {
             AppConfig(welcomeMessage = WelcomeMessage("Test welcome message"), http = HttpConfig("testhost", 1234))
           )
         )
-      }.provide(correctTestConfig.orDie)
+      }.provide(testConfig.orDie)
     )
   }
 
-  val correctTestConfig: ZLayer[Any, Throwable, AppConfig] = configFromResource("test.conf")
+  val testConfig: ZLayer[Any, Throwable, AppConfig] = configFromResource("test.conf")
 
   def configFromResource(path: String) = ZLayer {
     ZIO.attempt(ConfigFactory.load(path)).map(RawConfig(_))
