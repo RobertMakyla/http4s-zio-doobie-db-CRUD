@@ -1,4 +1,4 @@
-package zio_real_estate_crawler
+package zio_crud_app
 
 import zio.test.{TestConsole, TestRandom, TestSystem, ZIOSpecDefault, assertTrue}
 import zio.{Console, Random, System}

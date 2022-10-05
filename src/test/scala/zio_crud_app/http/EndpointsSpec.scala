@@ -1,4 +1,4 @@
-package zio_real_estate_crawler.http
+package zio_crud_app.http
 
 import zhttp.http
 import zhttp.http.Method.GET
@@ -6,7 +6,7 @@ import zhttp.http.{Request, Response, URL}
 import zio.test.Assertion.equalTo
 import zio.test.{ZIOSpecDefault, assert}
 import zio.{ZIO, ZLayer}
-import zio_real_estate_crawler.config.{AppConfig, HttpConfig, WelcomeMessage}
+import zio_crud_app.config.{AppConfig, HttpConfig, WelcomeMessage}
 
 object EndpointsSpec extends ZIOSpecDefault {
 

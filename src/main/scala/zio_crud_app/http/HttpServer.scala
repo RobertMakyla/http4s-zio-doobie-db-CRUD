@@ -1,4 +1,4 @@
-package zio_real_estate_crawler.http
+package zio_crud_app.http
 
 import zhttp.http.HttpApp
 import zhttp.service.Server

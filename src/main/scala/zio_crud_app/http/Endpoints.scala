@@ -1,8 +1,8 @@
-package zio_real_estate_crawler.http
+package zio_crud_app.http
 
 import zhttp.http._
 import zio.{ ULayer, ZIO, ZLayer}
-import zio_real_estate_crawler.config.AppConfig
+import zio_crud_app.config.AppConfig
 
 trait Endpoints {
   val all: HttpApp[Any, Throwable]

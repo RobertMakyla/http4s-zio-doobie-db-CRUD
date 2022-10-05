@@ -1,11 +1,4 @@
-
-read about test Aspects
-testing port (from system, from config)
-testing config
-testing loggers
-testing endpoints
-testing server responses
-testing loggers ?
-
-
-add http crawler layer/service
+endpoints zhttp -> http4s (for json use io.circe?)  (endpoints layer will need handlers)
+add layer handlers ( Will need UserRepo)
+add layer Repo (will need doobie?)
+add dockerized DB and some scripts how to start it and there should be a table USER created

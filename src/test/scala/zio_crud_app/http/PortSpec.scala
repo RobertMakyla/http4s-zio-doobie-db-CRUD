@@ -1,4 +1,4 @@
-package zio_real_estate_crawler.http
+package zio_crud_app.http
 
 import zio.test.TestConsole
 import zio._
@@ -6,8 +6,8 @@ import zio.test._
 import zio.test.Assertion._
 import Port._
 import zio.test.TestSystem.Data
-import zio_real_estate_crawler.config.{AppConfig, HttpConfig, WelcomeMessage}
-import zio_real_estate_crawler.http.PortSpec.test
+import zio_crud_app.config.{AppConfig, HttpConfig, WelcomeMessage}
+import zio_crud_app.http.PortSpec.test
 
 import java.io.IOException
 

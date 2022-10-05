@@ -1,11 +1,11 @@
-package zio_real_estate_crawler.wiring
+package zio_crud_app.wiring
 
 import zio._
 import zio.Clock
-import zio_real_estate_crawler.config.{AppConfig, RawConfig}
-import zio_real_estate_crawler.http.{Endpoints, HttpServer, Port}
-import zio_real_estate_crawler.logging.Logger
-import zio_real_estate_crawler.wiring.Layers._
+import zio_crud_app.config.{AppConfig, RawConfig}
+import zio_crud_app.http.{Endpoints, HttpServer, Port}
+import zio_crud_app.logging.Logger
+import zio_crud_app.wiring.Layers._
 
 
 object Boot extends ZIOAppDefault {

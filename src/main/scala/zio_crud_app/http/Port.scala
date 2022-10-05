@@ -1,8 +1,8 @@
-package zio_real_estate_crawler.http
+package zio_crud_app.http
 
 import zio.System
 import zio.{ZIO, ZLayer}
-import zio_real_estate_crawler.config.AppConfig
+import zio_crud_app.config.AppConfig
 
 case class Port(value: Int)
 

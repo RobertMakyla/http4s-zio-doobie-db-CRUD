@@ -1,4 +1,4 @@
-package zio_real_estate_crawler.config
+package zio_crud_app.config
 
 import com.typesafe.config.{Config, ConfigFactory}
 import zio.{ZIO, ZLayer}

@@ -1,4 +1,4 @@
-package zio_real_estate_crawler.config
+package zio_crud_app.config
 
 import zio.{IO, ZIO, ZLayer}
 import zio.config._

@@ -1,8 +1,8 @@
-package zio_real_estate_crawler.wiring
+package zio_crud_app.wiring
 
-import zio_real_estate_crawler.config.AppConfig
-import zio_real_estate_crawler.http.HttpServer
-import zio_real_estate_crawler.logging.Logger
+import zio_crud_app.config.AppConfig
+import zio_crud_app.http.HttpServer
+import zio_crud_app.logging.Logger
 
 object Layers {
 

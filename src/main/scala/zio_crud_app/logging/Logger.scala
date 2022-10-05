@@ -1,4 +1,4 @@
-package zio_real_estate_crawler.logging
+package zio_crud_app.logging
 
 import org.slf4j.LoggerFactory
 import zio.{Clock, UIO, ULayer, URIO, ZIO, ZLayer}

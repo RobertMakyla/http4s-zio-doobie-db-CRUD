@@ -1,1 +1,0 @@
-web: target/universal/stage/bin/zio-real-estate-crawler -Dhttp.port=$PORT
