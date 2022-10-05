@@ -1,1 +1,3 @@
-# ZIO CRUD App with http4s endpoints, doobie persistence on docckerized db.
+# ZIO CRUD App 
+
+stack: ZIO 2, http4s endpoints, Doobie persistence on dockerized DB.
