@@ -1,3 +1,3 @@
 # ZIO CRUD App 
 
-stack: ZIO 2, http4s endpoints, Doobie persistence on dockerized DB.
+stack: ZIO 2, zhttp (or zio http), zio config, 

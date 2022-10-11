@@ -1,4 +1,4 @@
-name := "zio-real-estate-crawler"
+name := "zio-simple-server"
 
 version := "1.0"
 
